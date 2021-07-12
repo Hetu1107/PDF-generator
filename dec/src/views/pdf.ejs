@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/pdf.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <script>
+        window.onload = function() {
+            document.getElementById('loader').style.display = "none";
+
+        };
+    </script>
+</head>
+<body>
+    <div id="loader"></div>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="logo">
+                <a href="/" class="nav-link">
+                    <span class="link-text">DEV.HMZ</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span class="link-text">home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/video" class="nav-link">
+                    <i class="fas fa-video"></i>
+                    <span class="link-text">Video</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/pdf" class="nav-link">
+                    <i class="fas fa-file-pdf"></i>
+                    <span class="link-text">Pdf</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/team" class="nav-link">
+                    <i class="fas fa-users"></i>
+                    <span class="link-text">Web-profile</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="main">
+        <div class="container">
+           <div class="card">
+               <div class="card-body">
+                   <h2 class="h2" style="font-family: 'Roboto', sans-serif">Fill the details</h2>
+                   <form method="POST" action="/upload" enctype="multipart/form-data">
+                    <input type="file" required name="files" id="files"  />
+                    <button type="submit" onclick="showAlert()" id="bb" >Upload-Image</button>
+                  </form>
+                   <form action="/gen" method="POST">
+                       <div class="row">
+                           <div class="col">
+                               <div class="input">
+                                   <label class="label" style="font-family: 'Montserrat', sans-serif">Name</label>
+                                    <input type="text" required name="user[name]" id="" placeholder="name">
+                                </div>
+                           </div>
+                           <div class="col">
+                            <div class="input">
+                                <label class="label" style="font-family: 'Montserrat', sans-serif">Name of Experiment</label>
+                                 <input type="text" required name="user[exp]" id="" placeholder="exp">
+                             </div>
+                           </div>
+                       </div>
+                       <div class="row">
+                        <div class="col">
+                            <div class="input">
+                                <label class="label" style="font-family: 'Montserrat', sans-serif">Aim</label>
+                                 <input type="text" required name="user[aim]" id="" placeholder="Aim">
+                             </div>
+                        </div>
+                        <div class="col">
+                         <div class="input">
+                             <label class="label" style="font-family: 'Montserrat', sans-serif">Instruments</label>
+                              <input type="text" required name="user[inst]" id="" placeholder="instrument">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input">
+                                <label class="label" style="font-family: 'Montserrat', sans-serif"> Subject</label>
+                                 <input type="text" required name="user[subject]" id="" placeholder="subject">
+                             </div>
+                        </div>
+                        <div class="col">
+                         <div class="input">
+                             <label class="label" style="font-family: 'Montserrat', sans-serif">Date</label>
+                              <input type="date" required name="user[date]" id="" placeholder="date" style="cursor: pointer;">
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                         <div class="input">
+                             <input type="submit" class="submit" onclick="showGenerated()" value="Generate-pdf" />
+                          </div>
+                        </div>
+                    </div>
+                   </form>
+                   <form action="/pd" method="POST">
+                    <input type="submit" id="gen-pdf" value="Click here to download" />
+                  </form>
+                   
+               </div>
+           </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    var flag=0;
+    function showAlert(){
+        if( document.getElementById("files").files.length == 0 ){
+        alert("No files selected");
+        flag=0;
+       }else{
+           alert("Image has been uploaded...")
+           flag=1;
+       }
+    }
+
+    function showGenerated(){
+        if( document.getElementById("files").files.length == 0 ){
+        alert("No Image selected,Please select image.");
+    }else if(flag==0){
+        alert("Please uplaod image before generating pdf...")
+    }else{
+        alert("PDF generated, click the download button below...")
+    }
+    
+    
+}
+</script>
+</html>
